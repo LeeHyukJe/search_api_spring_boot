@@ -1,10 +1,10 @@
-package com.wisenut.domain.application.impl;
+package com.wisenut.search.domain.application.impl;
 
-import com.wisenut.domain.ISearch;
-import com.wisenut.domain.application.SearchService;
-import com.wisenut.domain.application.commands.SearchCommand;
-import com.wisenut.domain.common.WNSearchInfo;
-import com.wisenut.domain.model.SearchManagement;
+import com.wisenut.search.domain.ISearch;
+import com.wisenut.search.domain.application.SearchService;
+import com.wisenut.search.domain.application.commands.SearchCommand;
+import com.wisenut.search.domain.common.WNSearchInfo;
+import com.wisenut.search.domain.model.SearchManagement;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,12 +12,10 @@ import java.util.Map;
 
 @Service
 public class SearchServiceImpl implements SearchService {
-    public WNSearchInfo searchInfo;
     public SearchManagement searchManagement;
     public ISearch iSearch;
 
-    public SearchServiceImpl(WNSearchInfo wnSearchInfo, SearchManagement searchManagement, ISearch iSearch) {
-        this.searchInfo = wnSearchInfo;
+    public SearchServiceImpl(SearchManagement searchManagement, ISearch iSearch) {
         this.searchManagement = searchManagement;
         this.iSearch = iSearch;
     }

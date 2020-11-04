@@ -1,21 +1,15 @@
-package com.wisenut.domain.model;
+package com.wisenut.search.domain.model;
 
+import com.wisenut.search.domain.ISearch;
+import com.wisenut.search.domain.application.commands.SearchCommand;
+import com.wisenut.search.domain.common.WNSearchInfo;
 
-import com.wisenut.domain.ISearch;
-import com.wisenut.domain.application.commands.SearchCommand;
-import com.wisenut.domain.common.WNSearchInfo;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.stereotype.Component;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import java.util.*;
-
-@Component
-@Getter
-public class ApvlSearch implements ISearch {
-
+public class BoardSearch implements ISearch {
     private List<Map<String, Object>> result;
 
     @Override

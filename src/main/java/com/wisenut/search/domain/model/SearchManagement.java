@@ -1,10 +1,9 @@
-package com.wisenut.domain.model;
+package com.wisenut.search.domain.model;
 
-import com.wisenut.domain.ISearch;
-import com.wisenut.domain.application.commands.SearchCommand;
-import com.wisenut.domain.common.WNCollection;
-import com.wisenut.domain.common.WNDefine;
-import com.wisenut.domain.common.WNSearchInfo;
+import com.wisenut.search.domain.application.commands.SearchCommand;
+import com.wisenut.search.domain.common.WNCollection;
+import com.wisenut.search.domain.common.WNDefine;
+import com.wisenut.search.domain.common.WNSearchInfo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -34,10 +33,6 @@ public class SearchManagement {
 
     // 디버깅 보기 설정
     public boolean isDebug = true;
-
-    public SearchManagement (WNSearchInfo searchInfo) {
-        this.searchInfo = searchInfo;
-    }
 
     public WNSearchInfo setting(SearchCommand value){
         String[] searchFields = null;

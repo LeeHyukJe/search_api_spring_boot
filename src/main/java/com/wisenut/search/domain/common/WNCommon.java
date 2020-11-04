@@ -1,12 +1,9 @@
-package com.wisenut.domain.common;
+package com.wisenut.search.domain.common;
 
 
 import java.io.IOException;
 
 import javax.servlet.jsp.JspWriter;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 
 import QueryAPI530.Search;

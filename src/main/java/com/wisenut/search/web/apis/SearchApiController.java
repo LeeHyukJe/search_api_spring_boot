@@ -1,9 +1,7 @@
-package com.wisenut.web.apis;
+package com.wisenut.search.web.apis;
 
-import com.wisenut.domain.ISearch;
-import com.wisenut.domain.application.SearchService;
-import com.wisenut.domain.common.WNSearchInfo;
-import com.wisenut.web.payload.SearchPayload;
+import com.wisenut.search.domain.application.SearchService;
+import com.wisenut.search.web.payload.SearchPayload;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,6 +1,4 @@
-package com.wisenut.domain.common;
-
-import org.springframework.stereotype.Service;
+package com.wisenut.search.domain.common;
 
 public class WNAnchor {
     private int m_before = -1;

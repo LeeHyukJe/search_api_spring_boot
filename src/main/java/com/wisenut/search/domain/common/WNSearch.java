@@ -1,7 +1,6 @@
-package com.wisenut.domain.common;
+package com.wisenut.search.domain.common;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**

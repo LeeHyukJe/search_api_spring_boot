@@ -1,4 +1,4 @@
-package com.wisenut.domain.common;
+package com.wisenut.search.domain.common;
 
 public class WNSearchInfo {
     private WNCommon common;
@@ -145,7 +145,6 @@ public class WNSearchInfo {
         this.suggestedQuery = wnSearchBuilder.suggestedQuery;
 
     }
-
 
     /**
      * �˻� Ű���带 �����Ѵ�.

@@ -1,4 +1,4 @@
-package com.wisenut.domain.application.commands;
+package com.wisenut.search.domain.application.commands;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

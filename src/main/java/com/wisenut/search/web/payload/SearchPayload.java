@@ -1,6 +1,6 @@
-package com.wisenut.web.payload;
+package com.wisenut.search.web.payload;
 
-import com.wisenut.domain.application.commands.SearchCommand;
+import com.wisenut.search.domain.application.commands.SearchCommand;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
