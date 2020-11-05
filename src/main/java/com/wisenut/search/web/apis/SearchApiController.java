@@ -21,9 +21,9 @@ public class SearchApiController {
     }
 
     @PostMapping("api/search")
-    public ResponseEntity<List<Map<String, Object>>> search(@RequestBody SearchPayload payload) {
+    public ResponseEntity<Map<String, List<Map<String, Object>>>> search(@RequestBody SearchPayload payload) {
         try{
-            List<Map<String, Object>> iSearch = searchService.search(payload.toCommand(payload));
+            Map<String, List<Map<String, Object>>> iSearch = searchService.search(payload.toCommand(payload));
             return new ResponseEntity<>(iSearch, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

@@ -6,6 +6,7 @@ import com.wisenut.search.domain.common.WNDefine;
 import com.wisenut.search.domain.common.WNSearchInfo;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -109,11 +110,32 @@ public class SearchManagement {
         return searchInfo;
     }
 
-    public List<Map<String, Object>> doSearch(WNSearchInfo searchInfo, SearchCommand command) {
-        switch (command.getCollection()) {
-            case "apvl" : return new ApvlSearch().search(searchInfo, command);
-            case "board" : return new BoardSearch().search(searchInfo, command);
-            default: return null;
+    public Map<String, List<Map<String, Object>>> doSearch(WNSearchInfo searchInfo, SearchCommand command) {
+
+        String[] collections = command.getCollection().split(",");
+        Map<String, List<Map<String, Object>>> result = new HashMap<>();
+
+        if(!command.getCollection().equals("ALL")){
+            for(String collection : collections) {
+                if(collection.equals("apvl")) {
+                    result.put(collection,new ApvlSearch().search(searchInfo, command));
+                    return result;
+                } else if(collection.equals("board")) {
+                    result.put(collection,new BoardSearch().search(searchInfo, command));
+                    return result;
+                }
+            }
+        }else {
+            for(String collection : WNCollection.COLLECTIONS) {
+                if(collection.equals("apvl")) {
+                    result.put(collection,new ApvlSearch().search(searchInfo, command));
+                } else if(collection.equals("board")) {
+                    result.put(collection,new BoardSearch().search(searchInfo, command));
+                }
+            }
+            return result;
         }
+
+        return null;
     }
 }
