@@ -464,6 +464,15 @@ public class WNSearchInfo {
         return true;
     }
 
+    public String getCollectionInfoValue(String collName, int target) {
+        int idx = getCollIdx(collName);
+        if (idx == -1) {
+            appendWarnings("[WARNING] [w3AddCollection] [setCollectionInfoValue] [" + collName + "] Collection name is not exist");
+            return null;
+        }
+        return wncol.COLLECTION_INFO[idx][target];
+    }
+
     /**
      * WNCollection�� wncol.COLLECTION_INFO�� ������ �ʿ��� ���� Assign�Ѵ�.
      *
