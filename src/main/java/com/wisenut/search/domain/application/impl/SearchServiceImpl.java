@@ -13,16 +13,14 @@ import java.util.Map;
 @Service
 public class SearchServiceImpl implements SearchService {
     public SearchManagement searchManagement;
-    public ISearch iSearch;
 
-    public SearchServiceImpl(SearchManagement searchManagement, ISearch iSearch) {
+    public SearchServiceImpl(SearchManagement searchManagement) {
         this.searchManagement = searchManagement;
-        this.iSearch = iSearch;
     }
     @Override
-    public List<Map<String, Object>> search(SearchCommand command) {
+    public Map<String, List<Map<String, Object>>> search(SearchCommand command) {
         WNSearchInfo info = searchManagement.setting(command);
-        List<Map<String, Object>> result = searchManagement.doSearch(info, command);
+        Map<String, List<Map<String, Object>>> result = searchManagement.doSearch(info, command);
         return result;
     }
 }
