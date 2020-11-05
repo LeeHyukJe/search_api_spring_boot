@@ -15,8 +15,8 @@ public class BoardSearch implements ISearch {
     @Override
     public List<Map<String, Object>> search(WNSearchInfo wnSearchInfo, SearchCommand command) {
         List<Map<String, Object>> list = new ArrayList<>();
-        int count = wnSearchInfo.getResultCount(command.getCollection());
-        int thisTotalCount = wnSearchInfo.getResultTotalCount(command.getCollection());
+        int count = wnSearchInfo.getResultCount("board");
+        int thisTotalCount = wnSearchInfo.getResultTotalCount("board");
         if (thisTotalCount > 0) {
             for (int i = 0; i < count; i++) {
                 Map<String,Object> result = new HashMap<>();
