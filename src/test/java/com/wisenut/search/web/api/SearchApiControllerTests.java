@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,9 +55,19 @@ public class SearchApiControllerTests {
         payload.setPaging("");
         payload.setListCount(3);
 
-        when(searchServiceMock.search(payload.toCommand(payload)))
-                .thenReturn(new ArrayList<>());
+        Map<String, List<Map<String, Object>>> result = new HashMap<>();
+        List<Map<String, Object>> list = new ArrayList<>();
+        Map<String,Object> temp = new HashMap<>();
+        temp.put("DOCID","1234");
+        temp.put("Content","test");
+        list.add(temp);
+        result.put("sample", list);
 
+        // when
+        when(searchServiceMock.search(payload.toCommand(payload)))
+                .thenReturn(result);
+
+        // then
         mvc.perform(
                 post("/api/search")
                 .contentType(MediaType.APPLICATION_JSON)
