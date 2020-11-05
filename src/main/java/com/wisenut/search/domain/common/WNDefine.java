@@ -45,7 +45,7 @@ public class WNDefine {
 	public final static int SORT_FIELD = 4;
 	public final static int RANKING_OPTION = 5;
 	public final static int SEARCH_FIELD = 6;
-	final static int RESULT_FIELD = 7;
+	public final static int RESULT_FIELD = 7;
 	public final static int DATE_RANGE = 8;
 	public final static int RANK_RANGE = 9;
 	public final static int EXQUERY_FIELD = 10;
