@@ -4,6 +4,7 @@ import com.wisenut.search.domain.application.SearchService;
 import com.wisenut.search.web.payload.SearchPayload;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ public class SearchApiController {
         this.searchService = searchService;
     }
 
-    @PostMapping("api/search")
+    @GetMapping("api/search")
     public ResponseEntity<Map<String, List<Map<String, Object>>>> search(@RequestBody SearchPayload payload) {
         try{
             Map<String, List<Map<String, Object>>> iSearch = searchService.search(payload.toCommand(payload));

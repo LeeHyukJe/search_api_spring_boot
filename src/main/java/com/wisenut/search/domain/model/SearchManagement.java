@@ -1,9 +1,11 @@
 package com.wisenut.search.domain.model;
 
+import com.wisenut.search.domain.ISearch;
 import com.wisenut.search.domain.application.commands.SearchCommand;
 import com.wisenut.search.domain.common.WNCollection;
 import com.wisenut.search.domain.common.WNDefine;
 import com.wisenut.search.domain.common.WNSearchInfo;
+import com.wisenut.search.domain.common.security.SecurityCheck;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -34,6 +36,12 @@ public class SearchManagement {
 
     // 디버깅 보기 설정
     public boolean isDebug = true;
+
+    List<ISearch> searchTargetList;
+
+    public SearchManagement(List<ISearch> searchTargetList) {
+        this.searchTargetList = searchTargetList;
+    }
 
     public WNSearchInfo setting(SearchCommand value){
         String[] searchFields = null;
@@ -93,8 +101,6 @@ public class SearchManagement {
                         value.getStartDate().replaceAll("[.]", "/") + "," + value.getEndDate().replaceAll("[.]", "/")
                                 + ",-");
             }
-
-
         }
         System.out.println("현재VO " + value.toString());
         searchInfo.search(value.getRealQuery(), isRealTimeKeyword, WNDefine.CONNECTION_CLOSE, useSuggestedQuery);
@@ -110,32 +116,28 @@ public class SearchManagement {
         return searchInfo;
     }
 
+    @SecurityCheck
     public Map<String, List<Map<String, Object>>> doSearch(WNSearchInfo searchInfo, SearchCommand command) {
 
         String[] collections = command.getCollection().split(",");
         Map<String, List<Map<String, Object>>> result = new HashMap<>();
 
+        // 통합검색이 아닐경우
         if(!command.getCollection().equals("ALL")){
-            for(String collection : collections) {
-                if(collection.equals("apvl")) {
-                    result.put(collection,new ApvlSearch().search(searchInfo, command));
-                    return result;
-                } else if(collection.equals("board")) {
-                    result.put(collection,new BoardSearch().search(searchInfo, command));
-                    return result;
-                }
+            for(String collection: collections) {
+               for(ISearch iSearch : searchTargetList) {
+                   if(iSearch.getClass().getName().toUpperCase().endsWith(collection.toUpperCase()+"SEARCH")){
+                       result.put(collection,iSearch.search(searchInfo,command));
+                   }
+               }
             }
+            return result;
+         // 통합검색일 경우
         }else {
-            for(String collection : WNCollection.COLLECTIONS) {
-                if(collection.equals("apvl")) {
-                    result.put(collection,new ApvlSearch().search(searchInfo, command));
-                } else if(collection.equals("board")) {
-                    result.put(collection,new BoardSearch().search(searchInfo, command));
-                }
+            for(int i=0; i<searchTargetList.size();i++) {
+                result.put(WNCollection.COLLECTIONS[i], searchTargetList.get(i).search(searchInfo,command));
             }
             return result;
         }
-
-        return null;
     }
 }

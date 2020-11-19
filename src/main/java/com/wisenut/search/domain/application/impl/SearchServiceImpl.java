@@ -19,6 +19,7 @@ public class SearchServiceImpl implements SearchService {
     }
     @Override
     public Map<String, List<Map<String, Object>>> search(SearchCommand command) {
+        // TODO command 파라미터는 domain 영역과 분리되도록 수정할 것!
         WNSearchInfo info = searchManagement.setting(command);
         Map<String, List<Map<String, Object>>> result = searchManagement.doSearch(info, command);
         return result;

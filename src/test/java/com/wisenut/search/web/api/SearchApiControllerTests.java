@@ -13,17 +13,18 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {SearchApiController.class})
@@ -39,21 +40,8 @@ public class SearchApiControllerTests {
     @Test
     public void search_validPayload_shoudSuccessAndReturn201() throws Exception {
         SearchPayload payload = new SearchPayload();
-        payload.setStartCount(0);
-        payload.setMode("");
-        payload.setSort("DATE");
-        payload.setCollection("ALL");
-        payload.setRange("");
-        payload.setStartDate("");
-        payload.setEndDate("");
-        payload.setSearchField("");
-        payload.setReQuery("2");
-        payload.setRealQuery("");
-        payload.setPrintView("");
-        payload.setExquery("");
-        payload.setQuery("검색");
-        payload.setPaging("");
-        payload.setListCount(3);
+        payload.setQuery("test");
+        payload.setCollection("apvl");
 
         Map<String, List<Map<String, Object>>> result = new HashMap<>();
         List<Map<String, Object>> list = new ArrayList<>();
@@ -61,19 +49,26 @@ public class SearchApiControllerTests {
         temp.put("DOCID","1234");
         temp.put("Content","test");
         list.add(temp);
-        result.put("sample", list);
+        result.put("apvl", list);
+
+        // given
+        given(searchServiceMock.search(payload.toCommand(payload))).willReturn(result);
+
 
         // when
-        when(searchServiceMock.search(payload.toCommand(payload)))
-                .thenReturn(result);
-
-        // then
-        mvc.perform(
-                post("/api/search")
+        final ResultActions actions = mvc.perform(
+                get("/api/search")
                 .contentType(MediaType.APPLICATION_JSON)
+                //.param(JsonUtils.toJson(payload))
                 .content(JsonUtils.toJson(payload))
         ).andExpect(status().is(200))
                 .andDo(print());
 
+        // then
+        actions
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                //.andExpect(jsonPath("$.DOCID", is("1234")))
+                .andDo(print());
     }
 }
