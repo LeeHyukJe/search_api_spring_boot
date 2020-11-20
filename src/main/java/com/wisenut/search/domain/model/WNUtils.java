@@ -1,4 +1,4 @@
-package com.wisenut.search.domain.common;
+package com.wisenut.search.domain.model;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

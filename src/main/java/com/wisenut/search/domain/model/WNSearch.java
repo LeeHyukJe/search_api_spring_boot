@@ -1,4 +1,4 @@
-package com.wisenut.search.domain.common;
+package com.wisenut.search.domain.model;
 
 
 import org.springframework.stereotype.Component;

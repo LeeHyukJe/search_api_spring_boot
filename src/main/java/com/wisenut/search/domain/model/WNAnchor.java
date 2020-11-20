@@ -1,4 +1,4 @@
-package com.wisenut.search.domain.common;
+package com.wisenut.search.domain.model;
 
 public class WNAnchor {
     private int m_before = -1;
