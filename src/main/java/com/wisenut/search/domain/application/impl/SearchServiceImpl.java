@@ -1,10 +1,9 @@
 package com.wisenut.search.domain.application.impl;
 
-import com.wisenut.search.domain.ISearch;
 import com.wisenut.search.domain.application.SearchService;
 import com.wisenut.search.domain.application.commands.SearchCommand;
-import com.wisenut.search.domain.common.WNSearchInfo;
-import com.wisenut.search.domain.model.SearchManagement;
+import com.wisenut.search.domain.model.WNSearchInfo;
+import com.wisenut.search.domain.model.search.SearchManagement;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

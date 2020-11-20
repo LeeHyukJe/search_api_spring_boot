@@ -1,10 +1,9 @@
-package com.wisenut.search.domain.model;
+package com.wisenut.search.domain.model.search;
 
-import com.wisenut.search.domain.ISearch;
 import com.wisenut.search.domain.application.commands.SearchCommand;
-import com.wisenut.search.domain.common.WNCollection;
-import com.wisenut.search.domain.common.WNDefine;
-import com.wisenut.search.domain.common.WNSearchInfo;
+import com.wisenut.search.domain.model.WNCollection;
+import com.wisenut.search.domain.model.WNDefine;
+import com.wisenut.search.domain.model.WNSearchInfo;
 import com.wisenut.search.domain.common.security.SecurityCheck;
 import org.springframework.stereotype.Component;
 

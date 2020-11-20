@@ -1,7 +1,7 @@
-package com.wisenut.search.domain;
+package com.wisenut.search.domain.model.search;
 
 import com.wisenut.search.domain.application.commands.SearchCommand;
-import com.wisenut.search.domain.common.WNSearchInfo;
+import com.wisenut.search.domain.model.WNSearchInfo;
 
 import java.util.List;
 import java.util.Map;

@@ -2,11 +2,10 @@ package com.wisenut.search.application.impl;
 
 import com.wisenut.search.domain.application.commands.SearchCommand;
 import com.wisenut.search.domain.application.impl.SearchServiceImpl;
-import com.wisenut.search.domain.common.WNSearchInfo;
-import com.wisenut.search.domain.model.SearchManagement;
+import com.wisenut.search.domain.model.WNSearchInfo;
+import com.wisenut.search.domain.model.search.SearchManagement;
 import com.wisenut.search.web.payload.SearchPayload;
 import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
